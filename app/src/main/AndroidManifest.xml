@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.example.uberv.deeplinking">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".GizmosActivity">
+            <!-- Register activity as a handler for uri view actions-->
+            <intent-filter android:label="view_gizmos">
+                <action android:name="android.intent.action.VIEW" />
+                <!-- Optional but recommended. Without this, the activity can be started
+                only only with an explicit intent, using app component name-->
+                <category android:name="android.intent.category.DEFAULT" />
+                <!-- make intent accessible from within a browser
+                (without that clicking a link cannot resolve to our app)-->
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!--Add 1+ data tags, where each tage represents a URI format that resolves to the activity -->
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data android:scheme="http"
+                      android:host="www.example.com"
+                      android:pathPrefix="/gizmos" />
+                <!-- note that the leading "/" is required for pathPrefix-->
+                <!-- Accepts URIs that begin with "example://gizmos” -->
+                <!--<data android:scheme="example"-->
+                      <!--android:host="gizmos" />-->
+                <!--Note: Intent filters may only contain a single data element for a URI pattern. Create separate intent filters to capture additional URI patterns. -->
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
